@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>02-graficos-y-funciones.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="parte-2-gr%C3%A1ficos-y-funciones">Parte 2: Gráficos y Funciones</h1>
+<h2 id="matrices-elementales">Matrices Elementales</h2>
+<pre class="hljs"><code><div>» <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>)
+<span class="hljs-built_in">ans</span> = <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
+
+» <span class="hljs-built_in">ones</span>(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>)
+<span class="hljs-built_in">ans</span> =
+    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
+    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
+    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
+
+» <span class="hljs-built_in">zeros</span>(<span class="hljs-number">2</span>)
+<span class="hljs-built_in">ans</span> =
+    <span class="hljs-number">0</span> <span class="hljs-number">0</span>
+    <span class="hljs-number">0</span> <span class="hljs-number">0</span>
+
+<span class="hljs-comment">% Matriz identidad (Eye -&gt; I, badum ts)</span>
+» <span class="hljs-built_in">eye</span>(<span class="hljs-number">3</span>)
+<span class="hljs-built_in">ans</span> =
+    <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
+    <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
+    <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>
+
+<span class="hljs-comment">% pseudorandom numbers</span>
+<span class="hljs-comment">% rand genera numeros entre 0 y 1 con distribucion uniforme</span>
+<span class="hljs-comment">% randn genera numeros con distribucion normal</span>
+
+<span class="hljs-comment">%tamaño</span>
+»<span class="hljs-built_in">size</span>(b)
+
+<span class="hljs-comment">%longitud</span>
+» <span class="hljs-built_in">length</span>(c)
+</div></code></pre>
+<h2 id="funciones-matematicas-elementales">Funciones Matematicas Elementales</h2>
+<pre class="hljs"><code><div>» <span class="hljs-built_in">sin</span>(<span class="hljs-number">2</span>)
+» <span class="hljs-built_in">cos</span>([<span class="hljs-number">2</span> <span class="hljs-number">4</span>])
+» <span class="hljs-built_in">tan</span>(B)
+» <span class="hljs-built_in">exp</span>([<span class="hljs-number">3</span> <span class="hljs-number">-1</span> <span class="hljs-built_in">j</span>*<span class="hljs-built_in">pi</span>/<span class="hljs-number">2</span>])
+» <span class="hljs-built_in">log</span>([<span class="hljs-number">3</span> ; <span class="hljs-number">6</span>])
+» <span class="hljs-built_in">sqrt</span>([<span class="hljs-number">3</span> ; <span class="hljs-built_in">j</span>*<span class="hljs-number">2</span> ; <span class="hljs-number">-1</span>])
+
+<span class="hljs-comment">% Funciones utiles con numeros complejos</span>
+» <span class="hljs-built_in">abs</span>(<span class="hljs-number">1</span>+<span class="hljs-built_in">j</span>)
+» <span class="hljs-built_in">angle</span>(<span class="hljs-number">1</span>+<span class="hljs-built_in">j</span>)
+» <span class="hljs-built_in">conj</span>(<span class="hljs-number">1</span>+<span class="hljs-built_in">j</span>)
+» <span class="hljs-built_in">real</span>(<span class="hljs-number">1</span>+<span class="hljs-built_in">j</span>)
+» <span class="hljs-built_in">imag</span>(<span class="hljs-number">1</span>+<span class="hljs-built_in">j</span>)
+
+<span class="hljs-comment">% Otras funciones</span>
+» <span class="hljs-built_in">fix</span> <span class="hljs-comment">% redondea un numero al entero mas cercano hacia cero</span>
+» <span class="hljs-built_in">floor</span> <span class="hljs-comment">% redondea un numero al entero mas cercano hacia menos infinito</span>
+» <span class="hljs-built_in">ceil</span> <span class="hljs-comment">% redondea un numero al entero mas cercano hacia mas infinito</span>
+» rounds <span class="hljs-comment">% redondea un numero al entero mas cercano</span>
+» <span class="hljs-built_in">mod</span>(x,y) <span class="hljs-comment">% mod(x,y) = x - y .* floor(x ./ y)</span>
+» <span class="hljs-built_in">rem</span>(x,y) <span class="hljs-comment">% si y no es cero rem(x,y) = x - y.*fix(x./y)</span>
+</div></code></pre>
+<h3 id="funciones-de-matematica-avanzada">Funciones de Matematica Avanzada</h3>
+<p>Algunas funciones útiles es procesamiento de señales son la <em>funcion error</em>, <em>funcion error complementario</em>, <em>minimo comun multiplo</em> y <em>maximo comun divisor</em>.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">%Error y complemento del error</span>
+» <span class="hljs-built_in">erf</span>(<span class="hljs-number">-1</span>)
+» <span class="hljs-built_in">erfc</span>(<span class="hljs-number">-1</span>)
+
+<span class="hljs-comment">% Minimo comun multiplo: Acepta matrices y devuelve el LCM (least common multiple) de los elementos</span>
+» <span class="hljs-built_in">lcm</span>([<span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">9</span> <span class="hljs-number">5</span> <span class="hljs-number">12</span>]);
+» <span class="hljs-built_in">gcd</span>(<span class="hljs-number">15</span> <span class="hljs-number">25</span> <span class="hljs-number">35</span> <span class="hljs-number">80</span>));
+</div></code></pre>
+<h3 id="funciones-matematicas-con-matrices">Funciones Matematicas con Matrices</h3>
+<p>En procesamiento de señales es comun la inversion de matrices y el calculo de eigenvalores.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">% Matriz invertida (debe ser cuadrada y su determinante /= de 0)</span>
+» inv(A)
+
+inv(A)*A <span class="hljs-comment">% devuelve identidad</span>
+
+» eig(B) <span class="hljs-comment">% encuentra los eigenvalores de una matriz cuadrada</span>
+
+» <span class="hljs-built_in">max</span>(C) <span class="hljs-comment">% retorna el valor maximo en un vector</span>
+» <span class="hljs-built_in">min</span>(C) <span class="hljs-comment">% igual que max, pero retorna el minimo</span>
+» <span class="hljs-built_in">mean</span>(A) <span class="hljs-comment">% para una matriz retorna un vector con el valor medio de las columnas de A</span>
+» std(B) <span class="hljs-comment">% retorna la desviacion estandar de un vector, y para una matriz retorna un vector con la desviacion estandar de las columnas</span>
+» <span class="hljs-built_in">sort</span>(C) <span class="hljs-comment">% Ordena las columnas de un vector en orden ascendente</span>
+</div></code></pre>
+<p>Para funciones en tiempo discreto (SVID) hay cinco funciones que pueden ser útiles.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">% Retorna la suma de los elementos de un vector, o un vector suma de las columnas en una matriz</span>
+» sum(B)
+
+<span class="hljs-comment">% igual que sum pero con el producto</span>
+» prod(B)
+
+<span class="hljs-comment">% Retorna un vector donde cada elemento es la diferencia del elemento del vector original menos el de su posicion anterior. El vector resultado tiene un elemento menos que el vector de input. Para una matrix, devuelve una matriz con la diferencia en las columnas.</span>
+» diff(A)
+
+<span class="hljs-comment">% Cumulative Sum: Retorna un vector donde cada elemento es la suma de los elementos previos. En una matriz aplica lo mismo en columnas</span>
+» cumsum(C)
+
+<span class="hljs-comment">% Opera como cumsum pero con el producto</span>
+» cumprod(C)
+</div></code></pre>
+<p>Otras funciones muy importantes son histograma, covarianza, convolucion y Transformada de Fourier rápida.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">% hist grafica un histograma de un vector de datos.</span>
+» hist(<span class="hljs-built_in">randn</span>(<span class="hljs-number">1000</span>,<span class="hljs-number">1</span>))
+
+<span class="hljs-comment">% cov encuentra la covarianza de un vector o la matriz de covarianza en una matriz, considerando cada columna que representa una observacion y cada collumna contiene datos de una variable.</span>
+» cov(randon(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>))
+
+<span class="hljs-comment">% conv convoluciona dos vectores. La longitud del vector de retorno es la suma de las longitudes de los vectores de convolucion, menos uno.</span>
+» conv(<span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>),<span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>))
+<span class="hljs-built_in">ans</span> =
+    <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
+
+<span class="hljs-comment">%La funcion fft computa la Transformada de fourier discreta de un vector</span>
+» fft(<span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>(<span class="hljs-number">0</span>:<span class="hljs-number">15</span>)'/<span class="hljs-number">4</span>))
+</div></code></pre>
+<h3 id="interpolaci%C3%B3n-y-polinomios">Interpolación y Polinomios</h3>
+<p>En procesamiento de señales es importante encontrar las raices de las ecuaciones.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">% roots encuentra todas las raices de una ecuacion algebraica</span>
+<span class="hljs-comment">% La ecuacion se asume de forma polinomial ax^n + ... + bx² + cx³ + dx⁴ = 0 donde el vector input son los coeficientes a , ... , c , b , c , d</span>
+» roots([<span class="hljs-number">3</span> <span class="hljs-number">9</span> <span class="hljs-number">8</span> <span class="hljs-number">1</span>])
+
+<span class="hljs-comment">% Polynomial curve fitting. Recibe:</span>
+<span class="hljs-comment">% Un vector X que contiene los valores de una variable independiente</span>
+<span class="hljs-comment">% Un vector Y contiene los valores de la variable dependiente</span>
+<span class="hljs-comment">% Un escalar N, grado del polinomio usado para ajustar la curva a los datasets.</span>
+<span class="hljs-comment">% Retorna los coeficientes, en orden ascendente de un polinomio de grado N que tiene el minimo error medio cuadrado para los valores de entrada</span>
+» X = <span class="hljs-number">1</span>:<span class="hljs-number">10</span>;
+» Y = <span class="hljs-number">5</span> + <span class="hljs-number">3</span>*x + <span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>)*<span class="hljs-number">2</span> ;
+» polyfit(X, Y, <span class="hljs-number">2</span>)
+<span class="hljs-built_in">ans</span> =
+    <span class="hljs-number">0.0170</span> <span class="hljs-number">2.4341</span> <span class="hljs-number">6.4467</span>
+</div></code></pre>
+<h2 id="gr%C3%A1ficos-en-dos-dimensiones">Gráficos en dos dimensiones</h2>
+<pre class="hljs"><code><div><span class="hljs-comment">% plot acepta dos vectores como argumento y opcionalmente algun comando de formato</span>
+<span class="hljs-comment">% Grafica el segundo vector verticalmente vs el primero horizontalmente.</span>
+» t = <span class="hljs-number">0</span>:<span class="hljs-number">1</span>/<span class="hljs-number">32</span>:<span class="hljs-number">2</span> ; x = <span class="hljs-built_in">sin</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*t) ;
+» <span class="hljs-built_in">plot</span>(t,x);
+» <span class="hljs-built_in">plot</span>(t,x,<span class="hljs-string">'k--'</span>)
+</div></code></pre>
+<ul>
+<li>Si agregamos un tercer argumento, controla el estilo y el color. Se determina con string</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>color</th>
+<th>marker</th>
+<th>line style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;y&quot; yellow</td>
+<td>. point</td>
+<td>- solid</td>
+</tr>
+<tr>
+<td>&quot;m&quot; magenta</td>
+<td>o circle</td>
+<td>: dotted</td>
+</tr>
+<tr>
+<td>r red</td>
+<td>x x-mark</td>
+<td>-. dashdot</td>
+</tr>
+<tr>
+<td>g green</td>
+<td>+ plus</td>
+<td>-- dashed</td>
+</tr>
+<tr>
+<td>b blue</td>
+<td>s square</td>
+<td></td>
+</tr>
+<tr>
+<td>w white</td>
+<td>d diamond</td>
+<td></td>
+</tr>
+<tr>
+<td>b black</td>
+<td>v triangle</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>^ trianle</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>&lt; triangle</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>&gt; triangle</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>p pentagram</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>h hexagram</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="linspace">Linspace</h3>
+<p>La funcion linspace es una herramienta util para producir un vector <strong>equiespaciado</strong>. Acepta dos o tres argumentos escalares.</p>
+<ul>
+<li>Si ingresan dos escalares d1 y d2, linspace retorna un vector de 100 valores equally-spaced entre d1 y d2, incluyendo ambos puntos.</li>
+<li>Si tres escalares d1, d2 y d3 ingresan, linspace devuelve un vector de N valores entre d1 y d2</li>
+<li>ejemplo <code>linspace(0,5,11)</code></li>
+</ul>
+<h3 id="logspace">Logspace</h3>
+<ul>
+<li>Utilizado para producir un vector equally-logarithmically-spaced.</li>
+<li><code>logspace(d1,d2)</code> devuelve un vector de 50 equally-logarighmically-spaced entre 10^d1 y 10^d2.</li>
+<li><code>logspace(d1,d2,N)</code> devuelve un vector de N valores</li>
+</ul>
+<h3 id="loglog">Loglog</h3>
+<ul>
+<li><code>loglog</code> grafica un vector vs otro, pero con escala logaritmica vertical y horizontal. La sintaxis funciona igual que <code>plot</code></li>
+<li>Ejemplo: loglog(f,abs(H));</li>
+</ul>
+<h3 id="semilog">Semilog</h3>
+<ul>
+<li><code>semilogx</code> produce un gráfico con escala logaritmica en &quot;x&quot; y lineal en &quot;y&quot;</li>
+<li><code>semilogy</code> logaritmico en &quot;y&quot;, lineal en &quot;x&quot;</li>
+</ul>
+<h3 id="stem">Stem</h3>
+<ul>
+<li>Se utiliza para SVID. Cada punto es indicado por un círculo al final de la linea</li>
+<li>Ejemplo: <code>stem(t,x,'k','filled')</code> es el formato clásico utilizado en bibliografía.</li>
+</ul>
+<h3 id="m%C3%BAltiples-gr%C3%A1ficos">Múltiples gráficos</h3>
+<p>A veces es útil mostrar múltiples ploteos simultaneamente. Se realiza con el comando <code>subplot</code>.</p>
+<ul>
+<li>subplot recibe 3 argumentos:
+<ul>
+<li>numero de filas del grafico</li>
+<li>numero de columas del grafico</li>
+<li>qué posición ocupará el próximo ploteo en el subplot</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>» subplot(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>) ; <span class="hljs-built_in">plot</span>(t,x,<span class="hljs-string">'k'</span>) ;
+» subplot(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>) ; stem(t,x,<span class="hljs-string">'k'</span>,<span class="hljs-string">'filled'</span>) ;
+» x = <span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*t);
+» subplot(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>) ; <span class="hljs-built_in">plot</span>(t, x, <span class="hljs-string">'k--'</span>) ;
+</div></code></pre>
+<h3 id="axis-zoom-y-grid">Axis, Zoom y Grid</h3>
+<p>Para controlar la escala que se muestra en los plots se utiliza el comando axis.</p>
+<ul>
+<li>1 argumento de entrada: vector de cuatro elementos
+<ul>
+<li>min x</li>
+<li>max x</li>
+<li>min y</li>
+<li>max y</li>
+</ul>
+</li>
+</ul>
+<p>El comando <code>zoom</code> alterna la opcion de zooming. <code>zoomon</code> activa el zoom y <code>zoomoff</code> lo desactiva.</p>
+<p>Grid agrega líneas cuadriculadas al gráfico. Los comandos grid, gridon y gridoff funcionan como zoom.</p>
+<h3 id="hold">Hold</h3>
+<p>el comando <code>hold</code> hace que cualquier curva que se plotee sea en el mismo gráfico y misma escala del ultimo plot graficado, hasta que se ejecute <code>holdoff</code></p>
+<pre class="hljs"><code><div>» <span class="hljs-built_in">plot</span>(t,x) ;
+» <span class="hljs-built_in">hold</span> on;
+» <span class="hljs-built_in">plot</span>(t/<span class="hljs-number">2</span>,x/<span class="hljs-number">2</span>);
+» <span class="hljs-built_in">hold</span> off;
+</div></code></pre>
+<h3 id="title-xlabel-ylabel-y-text">Title, xlabel, ylabel y text</h3>
+<pre class="hljs"><code><div>» <span class="hljs-built_in">plot</span>(t,x);
+» title(<span class="hljs-string">'Este es el título del gráfico);
+» xlabel('</span>Eje temporal');
+» ylabel(<span class="hljs-string">'Tensión [ V ] (por ejemplo));
+</span></div></code></pre>
+<h3 id="gr%C3%A1ficos-en-tres-dimensiones">Gráficos en Tres Dimensiones</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">% plot3:</span>
+» <span class="hljs-built_in">plot3</span>(t,<span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*t),<span class="hljs-built_in">sin</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*t));
+» grid on;
+
+<span class="hljs-comment">% mesh:</span>
+<span class="hljs-comment">% Se utiliza para funciones de dos variables independientes en una superficie sobre un plano.</span>
+
+<span class="hljs-comment">% meshgrid</span>
+<span class="hljs-comment">% Toma el valor de dos vectores como argumentos y devuelve dos matrices donde las columnas de X y Y son copias de los vectores x y y respectivamente</span>
+
+» x =  <span class="hljs-number">0</span>: <span class="hljs-number">0.1</span> : <span class="hljs-number">2</span>;
+» y = <span class="hljs-number">-1</span>: <span class="hljs-number">0.1</span> : <span class="hljs-number">1</span>;
+» [ X , Y ] = <span class="hljs-built_in">meshgrid</span>(x,y);
+» z = (X .^ <span class="hljs-number">2</span>) .* (Y .^ <span class="hljs-number">3</span>);
+» mesh(x,y,z);
+» xlabel(<span class="hljs-string">'x'</span>) ; ylabel(<span class="hljs-string">'y'</span>) ; zlabel(<span class="hljs-string">'x^2.y^3'</span>);
+</div></code></pre>
+<h3 id="stairs">Stairs</h3>
+<p><code>stairs</code> acepta dos argumentos como plot y stem, pero plotea un grafico escalonado.</p>
+<h3 id="image">Image</h3>
+<p>Acepta una matriz de elementos especificando la intensidad del color.</p>
+<h3 id="manejo-de-gr%C3%A1ficos">Manejo de Gráficos</h3>
+<p>en MATLAB cada gráfico es un objeto, cuya apariancia puede ser modificada utilizando el comando <code>set</code>.</p>
+<pre class="hljs"><code><div>h = <span class="hljs-built_in">plot</span>(t,<span class="hljs-built_in">sin</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*t));
+set(h, <span class="hljs-string">'LineWidth'</span>, <span class="hljs-number">2</span>);
+</div></code></pre>
+<p>El comando <code>get</code> devuelve una lista con las propiedades de un objeto.</p>
+<h3 id="ventana-de-gr%C3%A1ficos">Ventana de Gráficos</h3>
+<p>Cuando se utiliza un comando de ploteo, MATLAB abre una ventana llamada <code>figure</code> con propiedades por default, y el plot es graficado dentro de <code>figure</code>. El usuario puede manejar esta ventana con distintos comandos.</p>
+
+</body>
+</html>
